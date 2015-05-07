@@ -18,22 +18,60 @@ angular.module('app', [])
 
         $scope.timers = [
             {
-                name: "Heal",
-                max: 4*60,
-                current: 4*60,
-                active: false
+                name: "Barrier",
+                max: 210
+            },
+            {
+                name: "Clairvoyance",
+                max: 60
+            },
+            {
+                name: "Clarity",
+                max: 180
+            },
+            {
+                name: "Cleanse",
+                max: 210
+            },
+            {
+                name: "Exhaust",
+                max: 210
             },
             {
                 name: "Flash",
-                max: 5*60,
-                current: 5*60,
-                active: false
+                max: 300
+            },
+            {
+                name: "Garrison",
+                max: 210
+            },
+            {
+                name: "Ghost",
+                max: 210
+            },
+            {
+                name: "Heal",
+                max: 240
             },
             {
                 name: "Ignite",
-                max: 3.5*60,
-                current: 3.5*60,
-                active: false
+                max: 210
+            },
+            {
+                name: "Mark",
+                max: 20
+            },
+            {
+                name: "Dash",
+                max: 20
+            },
+            {
+                name: "Smite",
+                max: 60
+            },
+            {
+                name: "Teleport",
+                max: 300
             }
         ];
 
@@ -62,9 +100,12 @@ angular.module('app', [])
         };
 
         $scope.addTimer = function (c, timer) {
+            var add = angular.copy(timer);
+            add.current = add.max;
+            add.active = false;
             var timers = $scope.champions[c].timers;
             if (timers.length < 2) {
-                timers.push(angular.copy(timer));
+                timers.push(add);
             }
         };
     })

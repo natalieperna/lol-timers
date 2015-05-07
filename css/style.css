@@ -4,18 +4,13 @@
 
 .champion {
     text-align: center;
+    height: 325px;
 }
 
 .champion > * {
-    margin: 5px 0;
+    margin: 5px;
 }
 
 .timer {
-    text-align: center;
-}
-
-.timer .time {
-    font-family: Consolas, "Courier New", monospace;
-    margin: 10px;
-    font-size: 2em;
+    width: 80%;
 }

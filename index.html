@@ -26,8 +26,7 @@
 
     <div class="row champions">
 
-        <div ng-repeat="champion in champions">
-            <div class="col-md-2">
+        <div class="col-md-3" ng-repeat="champion in champions">
                 <div class="champion well">
                     <h2>{{champion.name}}</h2>
 
@@ -43,14 +42,13 @@
                         </div>
                     </form>
 
-                    <button type="button" class="btn btn-default" class="timer" ng-repeat="timer in champion.timers"
+                    <button type="button" class="btn btn-default timer" ng-repeat="timer in champion.timers"
                             ng-click="reset($parent.$index, $index)">
                         <h3>{{timer.name}}</h3>
 
                         <div class="time">{{timer.current | displayTimer}}</div>
                     </button>
                 </div>
-            </div>
         </div>
 
     </div>
