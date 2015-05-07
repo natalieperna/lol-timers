@@ -28,6 +28,8 @@
 
         <div class="col-md-3" ng-repeat="champion in champions">
                 <div class="champion well">
+                    <button type="button" class="close" ng-click="deleteChampion($index)">&times;</button>
+
                     <h2>{{champion.name}}</h2>
 
                     <form class="form-inline">

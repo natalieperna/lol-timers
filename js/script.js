@@ -99,6 +99,10 @@ angular.module('app', [])
             });
         };
 
+        $scope.deleteChampion = function (c) {
+            $scope.champions.splice(c, 1);
+        };
+
         $scope.addTimer = function (c, timer) {
             var add = angular.copy(timer);
             add.current = add.max;
