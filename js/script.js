@@ -1,50 +1,64 @@
 angular.module('app', [])
     .controller('ctrl', function ($scope, $interval) {
+        $scope.champions = [
+            {
+                name: "Yasuo",
+                timers: [
+                    {
+                        name: "Flash",
+                        max: 5*60,
+                        current: 5*60
+                    }
+                ]
+            }
+        ];
+
         $scope.timers = [
             {
-                champion: "Yasuo",
-                max: 10,
-                current: 10,
-                active: false
+                name: "Heal",
+                max: 4*60,
+                current: 4*60
             },
             {
-                champion: "Morgana",
-                max: 5,
-                current: 5,
-                active: true
+                name: "Flash",
+                max: 5*60,
+                current: 5*60
+            },
+            {
+                name: "Ignite",
+                max: 3.5*60,
+                current: 3.5*60
             }
         ];
 
         var tick = function () {
-            $scope.timers.forEach(function (timer) {
-                if (timer.active) {
-                    timer.current--;
-                }
+            $scope.champions.forEach(function (champion) {
+                champion.timers.forEach(function (timer) {
+                    if (timer.current > 0) {
+                        timer.current--;
+                    }
+                });
             });
         };
         $interval(tick, 1000);
 
-        $scope.start = function (i) {
-            $scope.timers[i].active = true;
-        };
-
-        $scope.stop = function (i) {
-            $scope.timers[i].active = false;
-        };
-
-        $scope.reset = function (i) {
-            var timer = $scope.timers[i];
+        $scope.reset = function (c, t) {
+            var timer = $scope.champions[c].timers[t];
             timer.current = timer.max;
-            timer.active = true;
         };
 
-        $scope.addChampion = function (name) {
-            $scope.timers.push({
-                champion: name,
-                max: 10,
-                current: 10,
-                active: false
+        $scope.addChampion = function (champion) {
+            $scope.champions.push({
+                name: champion,
+                timers: []
             });
+        };
+
+        $scope.addTimer = function (c, timer) {
+            var timers = $scope.champions[c].timers;
+            if (timers.length < 2) {
+                timers.push(angular.copy(timer));
+            }
         };
     })
     .filter('displayTimer', function () {

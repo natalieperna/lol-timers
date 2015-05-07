@@ -18,31 +18,35 @@
     <form class="form-inline">
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Champion" ng-model="name">
+            <button type="button" class="btn btn-default" ng-click="addChampion(name)">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
         </div>
-        <button type="button" class="btn btn-default" ng-click="addChampion(name)">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
     </form>
 
     <div class="row">
 
-        <div ng-repeat="timer in timers">
+        <div ng-repeat="champion in champions">
             <div class="col-md-2">
-                <h2>{{timer.champion}}</h2>
+                <h2>{{champion.name}}</h2>
 
-                <div class="well timer">
-                    <div class="time">{{timer.current | displayTimer}}</div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default" ng-click="start($index)">
-                            <span class="glyphicon glyphicon-play"></span>
-                        </button>
-                        <button type="button" class="btn btn-default" ng-click="stop($index)">
-                            <span class="glyphicon glyphicon-stop"></span>
-                        </button>
-                        <button type="button" class="btn btn-default" ng-click="reset($index)">
-                            <span class="glyphicon glyphicon-repeat"></span>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <select class="form-control" ng-model="newTimer" ng-options="timer.name for timer in timers">
+                        </select>
+                        <button type="button" class="btn btn-default" ng-click="addTimer($index, newTimer)">
+                            <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>
+                </form>
+
+                <div class="well timer" ng-repeat="timer in champion.timers">
+                    <h3>{{timer.name}}</h3>
+
+                    <div class="time">{{timer.current | displayTimer}}</div>
+                    <button type="button" class="btn btn-default" ng-click="reset($parent.$index, $index)">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                    </button>
                 </div>
             </div>
         </div>
