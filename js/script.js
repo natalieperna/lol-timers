@@ -115,12 +115,11 @@ angular.module('app', [])
     })
     .filter('displayTimer', function () {
         return function (seconds) {
-            var show = '';
-
-            if (seconds < 0) {
-                show += "-";
-                seconds = -seconds;
+            if (seconds <= 0) {
+                return 'READY';
             }
+
+            var show = '';
 
             var ss = seconds % 60;
             var mm = Math.floor(seconds / 60);
