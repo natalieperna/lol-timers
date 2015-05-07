@@ -1,6 +1,8 @@
 angular.module('app', [])
     .controller('ctrl', function ($scope, $interval) {
-        $scope.champions = [
+        $scope.champions = [];
+        /*
+        [
             {
                 name: "Yasuo",
                 timers: [
@@ -12,29 +14,33 @@ angular.module('app', [])
                 ]
             }
         ];
+        */
 
         $scope.timers = [
             {
                 name: "Heal",
                 max: 4*60,
-                current: 4*60
+                current: 4*60,
+                active: false
             },
             {
                 name: "Flash",
                 max: 5*60,
-                current: 5*60
+                current: 5*60,
+                active: false
             },
             {
                 name: "Ignite",
                 max: 3.5*60,
-                current: 3.5*60
+                current: 3.5*60,
+                active: false
             }
         ];
 
         var tick = function () {
             $scope.champions.forEach(function (champion) {
                 champion.timers.forEach(function (timer) {
-                    if (timer.current > 0) {
+                    if (timer.active) {
                         timer.current--;
                     }
                 });
@@ -45,6 +51,7 @@ angular.module('app', [])
         $scope.reset = function (c, t) {
             var timer = $scope.champions[c].timers[t];
             timer.current = timer.max;
+            timer.active = true;
         };
 
         $scope.addChampion = function (champion) {
