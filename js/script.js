@@ -37,6 +37,15 @@ angular.module('app', [])
             timer.current = timer.max;
             timer.active = true;
         };
+
+        $scope.addChampion = function (name) {
+            $scope.timers.push({
+                champion: name,
+                max: 10,
+                current: 10,
+                active: false
+            });
+        };
     })
     .filter('displayTimer', function () {
         return function (seconds) {
