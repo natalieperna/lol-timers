@@ -37,4 +37,24 @@ angular.module('app', [])
             timer.current = timer.max;
             timer.active = true;
         };
+    })
+    .filter('displayTimer', function () {
+        return function (seconds) {
+            var show = '';
+
+            if (seconds < 0) {
+                show += "-";
+                seconds = -seconds;
+            }
+
+            var ss = seconds % 60;
+            var mm = Math.floor(seconds / 60);
+
+            if (mm < 10) show += '0';
+            show += mm;
+            show += ":";
+            if (ss < 10) show += '0';
+            show += ss;
+            return show;
+        }
     });

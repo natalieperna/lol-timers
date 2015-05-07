@@ -1,0 +1,9 @@
+.timer {
+    text-align: center;
+}
+
+.timer .time {
+    font-family: Consolas, "Courier New", monospace;
+    margin: 10px;
+    font-size: 2em;
+}
